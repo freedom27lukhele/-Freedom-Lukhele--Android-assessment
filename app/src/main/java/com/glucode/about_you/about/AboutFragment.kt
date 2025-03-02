@@ -22,13 +22,11 @@ class AboutFragment : Fragment() {
 
                 Glide.with(requireContext()).load(imageUri).into(cardView.profileImage)
 
-                // Save the selected image URI to share between fragments
                 val engineerName = arguments?.getString("name")
                 engineerName?.let { name ->
-                    // Find the engineer and update their image URI
                     val engineer = MockData.engineers.find { it.name == name }
                     engineer?.let {
-                        // Save URI as string to the engineer object
+
                         it.defaultImageName = imageUri.toString()
                     }
                 }

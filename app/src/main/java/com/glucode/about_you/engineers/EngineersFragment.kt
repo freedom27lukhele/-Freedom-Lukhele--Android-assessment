@@ -47,9 +47,7 @@ class EngineersFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun setUpEngineersList(engineers: List<Engineer>) {
-        val sortedEngineers = engineers.sortedBy { it.quickStats.coffees } // Sort by years (ascending)
-
+    fun setUpEngineersList(engineers: List<Engineer>) {
         binding.list.adapter = EngineersRecyclerViewAdapter(engineers) {
             goToAbout(it)
         }

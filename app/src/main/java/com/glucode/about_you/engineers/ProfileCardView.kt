@@ -52,7 +52,6 @@ class ProfileCardView(
         if (url.isNotEmpty()) {
             Glide.with(context).load(url).placeholder(R.drawable.ic_person).into(profileImage)
         } else {
-            // Set default image if url is empty
             profileImage.setImageResource(R.drawable.ic_person)
         }
     }
