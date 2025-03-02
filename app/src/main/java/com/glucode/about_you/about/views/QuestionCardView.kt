@@ -22,6 +22,7 @@ class QuestionCardView @JvmOverloads constructor(
         set(value) {
             field = value
             binding.title.text = value
+            binding.title.setTextColor(ContextCompat.getColor(context, R.color.white))
         }
 
     var answers: List<String> = listOf()
@@ -58,10 +59,29 @@ class QuestionCardView @JvmOverloads constructor(
             binding.answers.children.filter { it.isSelected }.forEach {
                 it.isSelected = false
             }
+
+            view.isSelected = true
+
+            selection = binding.answers.children.indexOf(view)
+            setSelection()
         }
     }
-
+/*
+* This set selection process first checks for any nulls
+* then  clears all the elections before it sets a view you have chosen
+*/
     private fun setSelection() {
+        if (selection != null) {
+            val index = selection
 
+            if (index != null) {
+                if (index >= 0 && index < binding.answers.childCount) {
+                    for (i in 0 until binding.answers.childCount) {
+                        binding.answers.getChildAt(i).isSelected = false
+                    }
+                    binding.answers.getChildAt(index).isSelected = true
+                }
+            }
+        }
     }
 }

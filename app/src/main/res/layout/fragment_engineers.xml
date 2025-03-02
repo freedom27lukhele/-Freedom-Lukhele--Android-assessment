@@ -8,4 +8,4 @@
     android:layout_height="match_parent"
     app:layoutManager="LinearLayoutManager"
     tools:context=".engineers.EngineersFragment"
-    tools:listitem="@layout/item_engineer" />
+    tools:listitem="@layout/profile_view"/>

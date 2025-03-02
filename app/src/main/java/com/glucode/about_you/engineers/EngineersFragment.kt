@@ -37,7 +37,9 @@ class EngineersFragment : Fragment() {
     }
 
     private fun setUpEngineersList(engineers: List<Engineer>) {
-        binding.list.adapter = EngineersRecyclerViewAdapter(engineers) {
+        val sortedEngineers = engineers.sortedBy { it.quickStats.coffees } // Sort by years (ascending)
+
+        binding.list.adapter = EngineersRecyclerViewAdapter(sortedEngineers) {
             goToAbout(it)
         }
         val dividerItemDecoration = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
