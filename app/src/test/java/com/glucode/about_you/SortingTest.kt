@@ -5,7 +5,6 @@ import androidx.test.core.app.ApplicationProvider
 import com.glucode.about_you.R
 import com.glucode.about_you.engineers.EngineersFragment
 import com.glucode.about_you.engineers.models.Engineer
-import com.glucode.about_you.engineers.models.Question
 import com.glucode.about_you.engineers.models.QuickStats
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -19,7 +18,6 @@ class EngineersFragmentTest {
 
     @Before
     fun setUp() {
-        // Initialize the fragment
         fragment = EngineersFragment()
 
         mockEngineers = listOf(
@@ -28,7 +26,6 @@ class EngineersFragmentTest {
             Engineer("Freedom", "JAva Developer", "", QuickStats(20,233,233),),  // 5 years
              )
 
-        // Set up mock engineers data
         fragment.setUpEngineersList(mockEngineers)
     }
 
@@ -37,7 +34,6 @@ class EngineersFragmentTest {
         val menuItem = mock(MenuItem::class.java)
         `when`(menuItem.itemId).thenReturn(R.id.action_years)
 
-        // Act: Call onOptionsItemSelected
         fragment.onOptionsItemSelected(menuItem)
 
         val sortedList = mockEngineers.sortedBy { it.quickStats.years }

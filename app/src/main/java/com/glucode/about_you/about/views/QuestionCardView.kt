@@ -66,10 +66,7 @@ class QuestionCardView @JvmOverloads constructor(
             setSelection()
         }
     }
-/*
-* This set selection process first checks for any nulls
-* then  clears all the elections before it sets a view you have chosen
-*/
+
     private fun setSelection() {
         if (selection != null) {
             val index = selection

@@ -17,7 +17,6 @@ class AboutFragment : Fragment() {
     private var profileCardView: ProfileCardView? = null
     private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         uri?.let { imageUri ->
-            // Update the image in ProfileCardView
             profileCardView?.let { cardView ->
 
                 Glide.with(requireContext()).load(imageUri).into(cardView.profileImage)
