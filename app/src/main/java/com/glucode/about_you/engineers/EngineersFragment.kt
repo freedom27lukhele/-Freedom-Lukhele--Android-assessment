@@ -30,8 +30,19 @@ class EngineersFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_years) {
-            return true
+        when (item.itemId) {
+            R.id.action_years -> {
+                setUpEngineersList(MockData.engineers.sortedBy { it.quickStats.years })
+                return true
+            }
+            R.id.action_coffees -> {
+                setUpEngineersList(MockData.engineers.sortedBy { it.quickStats.coffees })
+                return true
+            }
+            R.id.action_bugs -> {
+                setUpEngineersList(MockData.engineers.sortedBy { it.quickStats.bugs })
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -39,7 +50,7 @@ class EngineersFragment : Fragment() {
     private fun setUpEngineersList(engineers: List<Engineer>) {
         val sortedEngineers = engineers.sortedBy { it.quickStats.coffees } // Sort by years (ascending)
 
-        binding.list.adapter = EngineersRecyclerViewAdapter(sortedEngineers) {
+        binding.list.adapter = EngineersRecyclerViewAdapter(engineers) {
             goToAbout(it)
         }
         val dividerItemDecoration = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)

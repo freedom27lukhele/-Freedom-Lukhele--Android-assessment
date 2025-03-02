@@ -2,6 +2,7 @@ package com.glucode.about_you.engineers
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -15,8 +16,9 @@ class ProfileCardView(
     defStyleAttr: Int = 0
 ) : CardView(context, attrs, defStyleAttr) {
 
+    private val binding: ProfileViewBinding
 
-    private val profileImage: ImageView
+    val profileImage: ImageView
     private val nameTextView: TextView
     private val roleTextView: TextView
     private val coffeeTextView: TextView
@@ -25,12 +27,16 @@ class ProfileCardView(
 
 
     init {
-        profileImage = findViewById(R.id.profile_image)
-        nameTextView = findViewById(R.id.name)
-        roleTextView = findViewById(R.id.role)
-        coffeeTextView = findViewById(R.id.coffee)
-        yearsTextView = findViewById(R.id.years)
-        bugsTextView = findViewById(R.id.bugs)
+
+        val inflater = LayoutInflater.from(context)
+        binding = ProfileViewBinding.inflate(inflater, this, true)
+
+        profileImage = binding.profileImage
+        nameTextView = binding.name
+        roleTextView = binding.role
+        coffeeTextView = binding.coffee
+        yearsTextView = binding.years
+        bugsTextView = binding.bugs
 
         radius = 16f
         elevation = 4f
@@ -43,7 +49,12 @@ class ProfileCardView(
     }
 
     fun setProfileImage(url: String) {
-        Glide.with(context).load(url).placeholder(R.drawable.ic_person).into(profileImage)
+        if (url.isNotEmpty()) {
+            Glide.with(context).load(url).placeholder(R.drawable.ic_person).into(profileImage)
+        } else {
+            // Set default image if url is empty
+            profileImage.setImageResource(R.drawable.ic_person)
+        }
     }
 
     fun setName(name: String) {
